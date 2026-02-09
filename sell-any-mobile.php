@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sell Your Mobile From Any Brand | YourMobileBuyer</title>
-<meta name="description" content="Sell any mobile phone from any brand. Check price for old, used, broken, or dead phones instantly. Free pickup & instant payment.">
+<title>Sell Any Mobile Phone in Delhi & Gurgaon | Instant Cash | YourMobileBuyer</title>
+<meta name="description" content="Sell any mobile phone in Delhi & Gurgaon. We buy old, used, broken and dead phones of all brands with free pickup and instant payment. Get the best price today.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,6 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
  <link rel="stylesheet" href="css/style.css">
+ <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <style>
 .card{border-radius:20px;padding:20px;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,0.08);margin-bottom:20px;}
 .card h4{text-align:center;margin-bottom:20px;font-weight:700;}

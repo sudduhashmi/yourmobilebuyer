@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How It Works | YourMobileBuyer</title>
-<meta name="description" content="Step-by-step guide to sell your mobile online. Works for old, used, broken, or dead phones. Free pickup & instant payment.">
+<title>How It Works – Sell Old Phone in Delhi & Gurgaon | YourMobileBuyer</title>
+<meta name="description" content="Learn how to sell your old or used phone in Delhi & Gurgaon with YourMobileBuyer. Check price, book free pickup and get instant payment at your doorstep.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
  <link rel="stylesheet" href="css/style.css">
+ <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <style>
 
 
@@ -233,7 +234,7 @@
 </div>
 </div>
 
-<section class="sellfaq-section py-5 bg-light">
+<section class="sellfaq-section py-5 ">
   <div class="container">
     <div class="text-center mb-4">
       <h2 class="fw-bold">How It Works – FAQs</h2>
@@ -374,5 +375,171 @@
   <?php include 'includes/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+let currentSlide = 0;
+const slides = document.querySelector('.ymb-slides');
+const totalSlides = document.querySelectorAll('.ymb-slide').length;
+const dots = document.querySelectorAll('.ymb-dot');
+
+function updateSlider() {
+  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach(d => d.classList.remove('active'));
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlider();
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlider();
+}
+
+function goSlide(index) {
+  currentSlide = index;
+  updateSlider();
+}
+
+/* AUTO SLIDE */
+setInterval(nextSlide, 4000);
+</script>
+<script>
+function ymbSlide(dir) {
+  const track = document.getElementById("ymbTrack");
+  track.scrollLeft += dir * 260;
+}
+</script>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const answer = q.nextElementSibling;
+      const icon = q.querySelector('.icon');
+
+      if (answer.classList.contains('show')) {
+        answer.classList.remove('show');
+        icon.textContent = '+';
+      } else {
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('show'));
+        document.querySelectorAll('.icon').forEach(i => i.textContent = '+');
+
+        answer.classList.add('show');
+        icon.textContent = '−';
+      }
+    });
+  });
+</script>
+
+<script>
+  const track = document.getElementById("trendTrack");
+  const nextBtn = document.querySelector(".trend-right");
+  const prevBtn = document.querySelector(".trend-left");
+
+  let index = 0;
+
+  function step() {
+    return track.children[0].offsetWidth + 24;
+  }
+
+  function visible() {
+    if (window.innerWidth < 520) return 1;
+    if (window.innerWidth < 900) return 2;
+    return 3;
+  }
+
+  nextBtn.onclick = () => {
+    const max = track.children.length - visible();
+    if (index < max) {
+      index++;
+      track.style.transform = `translateX(-${index * step()}px)`;
+    }
+  };
+
+  prevBtn.onclick = () => {
+    if (index > 0) {
+      index--;
+      track.style.transform = `translateX(-${index * step()}px)`;
+    }
+  };
+
+  window.addEventListener("resize", () => {
+    index = 0;
+    track.style.transform = "translateX(0)";
+  });
+</script>
+
+<script>
+  function sliderControl(prev, next, slider) {
+    prev.onclick = () => slider.scrollLeft -= 300;
+    next.onclick = () => slider.scrollLeft += 300;
+  }
+
+  sliderControl(
+    document.querySelector(".rn-prev"),
+    document.querySelector(".rn-next"),
+    document.getElementById("rnSlider")
+  );
+
+  sliderControl(
+    document.querySelector(".rr-prev"),
+    document.querySelector(".rr-next"),
+    document.getElementById("rrSlider")
+  );
+</script>
+<script>
+function openLocationPopup() {
+  document.getElementById('locationPopup').style.display = 'flex';
+}
+
+function closeLocationPopup() {
+  document.getElementById('locationPopup').style.display = 'none';
+}
+
+function openEnquiryPopup() {
+  document.getElementById('enquiryPopup').style.display = 'flex';
+}
+
+function closeEnquiryPopup() {
+  document.getElementById('enquiryPopup').style.display = 'none';
+}
+</script>
+<script>
+  var swiper = new Swiper('.swiper-testimonial', {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+
+  navigation: {
+    nextEl: '.swiper-button-next-test',
+    prevEl: '.swiper-button-prev-test',
+  },
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+
+</script>
 </body>
 </html>

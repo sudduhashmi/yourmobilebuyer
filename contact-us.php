@@ -5,7 +5,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<title>YourMobileBuyer Header</title>
+<title>Contact Us | Sell Old Phone in Delhi & Gurgaon | YourMobileBuyer</title>
+<meta name="description" content="Contact YourMobileBuyer to sell your old phone in Delhi & Gurgaon. Get instant price, free pickup and same day payment for used mobiles. Call or WhatsApp now.">
+<meta name="keywords" content="contact mobile buyer delhi, sell old phone gurgaon contact, used mobile buyer delhi number, phone buyer near me, sell phone fast delhi NCR">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -15,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
  <link rel="stylesheet" href="css/style.css">
+ <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
  <style>
   .contact-form h4 {
     color: #04437d !important;

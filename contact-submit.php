@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $adminMail->Port       = $smtpPort;
 
         $adminMail->setFrom($smtpUser, 'YourMobileBuyer');
-        $adminMail->addAddress('bhupenderdagar15@gmail.com'); // 🔴 ADMIN RECEIVER
+        $adminMail->addAddress('shahbuddin312203@gmail.com'); // 🔴 ADMIN RECEIVER
 
         $adminMail->isHTML(true);
         $adminMail->Subject = '📩 New Contact Form Submission';

@@ -1,10 +1,103 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+if(isset($_POST['submit_form'])){
+
+$name   = $_POST['name'];
+$email  = $_POST['email'];
+$phone  = $_POST['phone'];
+$brand  = $_POST['brand'];
+$model  = $_POST['model'];
+$city   = $_POST['city'];
+$state  = $_POST['state'];
+$issue  = $_POST['issue'];
+
+$adminEmail = "shahbuddin312203@gmail.com";
+$appPassword = "wgwbtiwbterfvick"; // gmail app password
+
+// ================= ADMIN MAIL =================
+$mail = new PHPMailer(true);
+
+try {
+$mail->isSMTP();
+$mail->Host       = 'smtp.gmail.com';
+$mail->SMTPAuth   = true;
+$mail->Username   = $adminEmail;
+$mail->Password   = $appPassword;
+$mail->SMTPSecure = 'tls';
+$mail->Port       = 587;
+
+$mail->setFrom($adminEmail,'YourMobileBuyer');
+$mail->addAddress($adminEmail); // admin ko mail
+
+$mail->isHTML(true);
+$mail->Subject = 'New Mobile Sell Lead';
+
+$mail->Body = "
+<h2>New Lead Received</h2>
+<b>Name:</b> $name <br>
+<b>Phone:</b> $phone <br>
+<b>Email:</b> $email <br>
+<b>Brand:</b> $brand <br>
+<b>Model:</b> $model <br>
+<b>City:</b> $city <br>
+<b>State:</b> $state <br>
+<b>Problem:</b> $issue
+";
+
+$mail->send();
+
+
+// ================= USER MAIL =================
+$mail2 = new PHPMailer(true);
+
+$mail2->isSMTP();
+$mail2->Host       = 'smtp.gmail.com';
+$mail2->SMTPAuth   = true;
+$mail2->Username   = $adminEmail;
+$mail2->Password   = $appPassword;
+$mail2->SMTPSecure = 'tls';
+$mail2->Port       = 587;
+
+$mail2->setFrom($adminEmail,'YourMobileBuyer');
+$mail2->addAddress($email); // user ko mail
+
+$mail2->isHTML(true);
+$mail2->Subject = 'YourMobileBuyer Confirmation';
+
+$mail2->Body = "
+Hi <b>$name</b>,<br><br>
+Thanks for submitting your mobile details.<br>
+Our team will contact you shortly.<br><br>
+<b>YourMobileBuyer Team</b>
+";
+
+$mail2->send();
+
+echo "<script>
+alert('Form Submitted Successfully');
+window.location.href='sell-broken-mobile.php';
+</script>";
+
+} catch (Exception $e) {
+echo "Mail Error: {$mail->ErrorInfo}";
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sell Broken Mobile Phone Online | YourMobileBuyer</title>
-<meta name="description" content="Sell your broken or damaged mobile phone online at best price. Free pickup, secure data wipe & instant payment. Get the best price for broken phones.">
+<title>Sell Broken Mobile Phone in Delhi & Gurgaon | Instant Cash | YourMobileBuyer</title>
+<meta name="description" content="Sell broken or damaged mobile phone in Delhi & Gurgaon. We buy cracked screen, dead and faulty phones with free pickup and instant payment. Get best price today.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,6 +106,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
  <link rel="stylesheet" href="css/style.css">
+ <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <style>
 
 
@@ -30,6 +124,7 @@
     font-size: 16px;
     margin-bottom: 20px;
     font-weight: 600;
+        color: #ffffff;
 }
 .hero ul{list-style:none;padding:0;}
 .hero ul li{
@@ -219,7 +314,7 @@ background: #04437d;
   <?php include 'includes/header.php'; ?>
 <!-- HERO -->
 <section class="hero">
-<h1>Sell Your Broken Mobile Phone Online</h1>
+<h1>Sell Your Broken Mobile Phone </h1>
 <p>Even if your phone is damaged, water-logged, or broken, we buy it at best price. Free pickup & instant payment!</p>
 <ul>
 <li>Free Pickup</li>
@@ -229,56 +324,119 @@ background: #04437d;
 </section>
 
 <!-- HERO FORM -->
+<!-- HERO FORM -->
 <div class="container-fluid px-3 px-md-5">
 <div class="hero-box">
-<h5 class="fw-semibold mb-3 text-center">Select Your Broken Mobile</h5>
 
-<select id="brand" class="form-select mb-3">
+<h5 class="fw-semibold mb-3 text-center">Select Your Mobile to Sell</h5>
+
+
+<form method="post" action="" class="container mt-4">
+
+<div class="row">
+
+<!-- NAME -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Full Name *</label>
+<input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
+</div>
+
+<!-- PHONE -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Mobile Number *</label>
+<input type="tel" name="phone" class="form-control" placeholder="10 digit mobile number"
+pattern="[0-9]{10}" required>
+</div>
+
+<!-- EMAIL -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Email Address *</label>
+<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+</div>
+
+<!-- WHATSAPP -->
+<div class="col-md-6 mb-3">
+<label class="form-label">WhatsApp Number</label>
+<input type="tel" name="whatsapp" class="form-control" placeholder="WhatsApp number">
+</div>
+
+<!-- BRAND -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Mobile Brand *</label>
+<select name="brand" class="form-select" required>
 <option value="">Select Brand</option>
-<option value="Apple">Apple</option>
-<option value="Samsung">Samsung</option>
-<option value="Redmi">Redmi</option>
-<option value="Vivo">Vivo</option>
-<option value="Oppo">Oppo</option>
+<option>Apple</option>
+<option>Samsung</option>
+<option>OnePlus</option>
+<option>Vivo</option>
+<option>Oppo</option>
+<option>Realme</option>
+<option>Redmi</option>
 </select>
+</div>
 
-<select id="model" class="form-select mb-3">
-<option>Select Model</option>
-<option value="Model 1">Model 1</option>
-<option value="Model 2">Model 2</option>
-<option value="Model 3">Model 3</option>
+<!-- MODEL -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Model Name *</label>
+<input type="text" name="model" class="form-control" placeholder="Example: iPhone 11" required>
+</div>
+
+<!-- STORAGE -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Storage</label>
+<select name="storage" class="form-select">
+<option>64GB</option>
+<option>128GB</option>
+<option>256GB</option>
+<option>512GB</option>
 </select>
-
-<!-- CONDITION QUESTIONS -->
-<div>
-<div class="condition-row">
-<button class="btn btn-outline-success condition-btn" data-value="yes">Switching ON: Yes</button>
-<button class="btn btn-outline-danger condition-btn" data-value="no">Switching ON: No</button>
 </div>
 
-<div class="condition-row">
-<button class="btn btn-outline-success condition-btn" data-value="no">Screen Broken: No</button>
-<button class="btn btn-outline-danger condition-btn" data-value="yes">Screen Broken: Yes</button>
+<!-- CONDITION -->
+<div class="col-md-6 mb-3">
+<label class="form-label">Mobile Condition *</label>
+<select name="condition" class="form-select" required>
+<option value="">Select Condition</option>
+<option>Good</option>
+<option>Screen Broken</option>
+<option>Dead</option>
+<option>Not Switching On</option>
+</select>
 </div>
 
-<div class="condition-row">
-<button class="btn btn-outline-success condition-btn" data-value="yes">Touch Working: Yes</button>
-<button class="btn btn-outline-danger condition-btn" data-value="no">Touch Working: No</button>
+<!-- CITY -->
+<div class="col-md-6 mb-3">
+<label class="form-label">City *</label>
+<input type="text" name="city" class="form-control" placeholder="Delhi / Gurgaon" required>
 </div>
 
-<div class="condition-row">
-<button class="btn btn-outline-danger condition-btn" data-value="yes">Physical Damage: Yes</button>
-<button class="btn btn-outline-success condition-btn" data-value="no">Physical Damage: No</button>
+<!-- STATE -->
+<div class="col-md-6 mb-3">
+<label class="form-label">State *</label>
+<input type="text" name="state" class="form-control" placeholder="State name" required>
 </div>
 
-<div class="condition-row">
-<button class="btn btn-outline-danger condition-btn" data-value="yes">Water Damage: Yes</button>
-<button class="btn btn-outline-success condition-btn" data-value="no">Water Damage: No</button>
+<!-- ADDRESS -->
+<div class="col-12 mb-3">
+<label class="form-label">Pickup Address *</label>
+<textarea name="address" class="form-control" rows="3" placeholder="Enter full address" required></textarea>
 </div>
 
-<button class="btn btn-primary w-100 mt-3" onclick="calculatePrice()">Get Final Price</button>
-<h3 class="text-center mt-4" id="priceBox">Your Price: ₹0</h3>
+<!-- ISSUE -->
+<div class="col-12 mb-3">
+<label class="form-label">Mobile Problem Details</label>
+<textarea name="issue" class="form-control" rows="3" placeholder="Describe mobile problem"></textarea>
 </div>
+
+<!-- SUBMIT -->
+<div class="col-12 text-center">
+<button type="submit" name="submit_form" class="btn btn-primary px-5 py-2">
+Submit Details
+</button>
+</div>
+
+</div>
+</form>
 
 </div>
 </div>
@@ -418,7 +576,7 @@ background: #04437d;
 </div>
 </section>
 
-<section class="sellfaq-section py-5 bg-light">
+<section class="sellfaq-section py-5 ">
   <div class="container">
     <div class="text-center mb-4">
       <h2 class="fw-bold">Broken Mobile FAQ</h2>
@@ -583,6 +741,171 @@ if(finalPrice<500) finalPrice=500;
 $("#priceBox").html("Your Price: ₹"+finalPrice);
 }
 </script>
+<script>
+let currentSlide = 0;
+const slides = document.querySelector('.ymb-slides');
+const totalSlides = document.querySelectorAll('.ymb-slide').length;
+const dots = document.querySelectorAll('.ymb-dot');
 
+function updateSlider() {
+  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach(d => d.classList.remove('active'));
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlider();
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlider();
+}
+
+function goSlide(index) {
+  currentSlide = index;
+  updateSlider();
+}
+
+/* AUTO SLIDE */
+setInterval(nextSlide, 4000);
+</script>
+<script>
+function ymbSlide(dir) {
+  const track = document.getElementById("ymbTrack");
+  track.scrollLeft += dir * 260;
+}
+</script>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const answer = q.nextElementSibling;
+      const icon = q.querySelector('.icon');
+
+      if (answer.classList.contains('show')) {
+        answer.classList.remove('show');
+        icon.textContent = '+';
+      } else {
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('show'));
+        document.querySelectorAll('.icon').forEach(i => i.textContent = '+');
+
+        answer.classList.add('show');
+        icon.textContent = '−';
+      }
+    });
+  });
+</script>
+
+<script>
+  const track = document.getElementById("trendTrack");
+  const nextBtn = document.querySelector(".trend-right");
+  const prevBtn = document.querySelector(".trend-left");
+
+  let index = 0;
+
+  function step() {
+    return track.children[0].offsetWidth + 24;
+  }
+
+  function visible() {
+    if (window.innerWidth < 520) return 1;
+    if (window.innerWidth < 900) return 2;
+    return 3;
+  }
+
+  nextBtn.onclick = () => {
+    const max = track.children.length - visible();
+    if (index < max) {
+      index++;
+      track.style.transform = `translateX(-${index * step()}px)`;
+    }
+  };
+
+  prevBtn.onclick = () => {
+    if (index > 0) {
+      index--;
+      track.style.transform = `translateX(-${index * step()}px)`;
+    }
+  };
+
+  window.addEventListener("resize", () => {
+    index = 0;
+    track.style.transform = "translateX(0)";
+  });
+</script>
+
+<script>
+  function sliderControl(prev, next, slider) {
+    prev.onclick = () => slider.scrollLeft -= 300;
+    next.onclick = () => slider.scrollLeft += 300;
+  }
+
+  sliderControl(
+    document.querySelector(".rn-prev"),
+    document.querySelector(".rn-next"),
+    document.getElementById("rnSlider")
+  );
+
+  sliderControl(
+    document.querySelector(".rr-prev"),
+    document.querySelector(".rr-next"),
+    document.getElementById("rrSlider")
+  );
+</script>
+<script>
+function openLocationPopup() {
+  document.getElementById('locationPopup').style.display = 'flex';
+}
+
+function closeLocationPopup() {
+  document.getElementById('locationPopup').style.display = 'none';
+}
+
+function openEnquiryPopup() {
+  document.getElementById('enquiryPopup').style.display = 'flex';
+}
+
+function closeEnquiryPopup() {
+  document.getElementById('enquiryPopup').style.display = 'none';
+}
+</script>
+<script>
+  var swiper = new Swiper('.swiper-testimonial', {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+
+  navigation: {
+    nextEl: '.swiper-button-next-test',
+    prevEl: '.swiper-button-prev-test',
+  },
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+
+</script>
 </body>
 </html>

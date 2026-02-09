@@ -1,3 +1,66 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+if(isset($_POST['send_enquiry'])){
+
+$name = $_POST['name'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$city = $_POST['city'];
+$message = $_POST['message'];
+$page = $_POST['page_url'];
+
+$adminEmail = "shahbuddin312203@gmail.com";
+$appPassword = "wgwbtiwbterfvick";
+
+try{
+
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = $adminEmail;
+$mail->Password = $appPassword;
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
+
+$mail->setFrom($adminEmail,'Website Enquiry');
+$mail->addAddress($adminEmail);
+
+$mail->isHTML(true);
+$mail->Subject = "New Enquiry";
+
+$mail->Body = "
+<h3>New Enquiry Received</h3>
+<b>Name:</b> $name <br>
+<b>Phone:</b> $phone <br>
+<b>Email:</b> $email <br>
+<b>City:</b> $city <br>
+<b>Message:</b> $message <br>
+<b>Page:</b> $page
+";
+
+$mail->send();
+
+echo "<script>
+alert('Enquiry Submitted Successfully');
+window.location.href = window.location.href;
+</script>";
+
+}catch(Exception $e){
+echo $mail->ErrorInfo;
+}
+
+}
+?>
+
+
+
 <footer class="site-footer">
   <div class="container-fluid px-3 px-md-5">
     <div class="row gy-4">
@@ -101,6 +164,8 @@
 
   </div>
 </div>
+
+
 <div class="ymb-popup-overlay" id="enquiryPopup">
   <div class="ymb-popup">
 
@@ -109,13 +174,24 @@
       <span class="close-btn" onclick="closeEnquiryPopup()">✕</span>
     </div>
 
-    <form class="enquiry-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="tel" placeholder="Mobile Number" required>
-      <input type="email" placeholder="Email Address">
-      <textarea placeholder="Your Message"></textarea>
+    <form method="POST" class="enquiry-form">
 
-      <button type="submit" class="submit-btn">Submit Enquiry</button>
+      <input type="text" name="name" placeholder="Your Name" required>
+
+      <input type="tel" name="phone" placeholder="Mobile Number" required>
+
+      <input type="email" name="email" placeholder="Email Address">
+
+      <input type="text" name="city" placeholder="City">
+
+      <textarea name="message" placeholder="Your Message"></textarea>
+
+      <input type="hidden" name="page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+
+      <button type="submit" name="send_enquiry" class="submit-btn">
+        Submit Enquiry
+      </button>
+
     </form>
 
   </div>

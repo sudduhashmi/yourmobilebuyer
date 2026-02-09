@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<title>YourMobileBuyer Header</title>
+<title>About YourMobileBuyer | Old Phone Buyer in Delhi & Gurgaon</title>
+<meta name="description" content="YourMobileBuyer is a trusted old phone buyer in Delhi and Gurgaon. We buy used, old and broken phones with instant payment and free pickup.">
+<meta name="keywords" content="about YourMobileBuyer, old phone buyer Delhi, mobile buyer Gurgaon, sell old phone Delhi NCR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
  <link rel="stylesheet" href="css/style.css">
+ <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 
 </head>
 
@@ -71,7 +74,7 @@
 
 
 <!-- OUR MISSION -->
-<section class="bg-light section-padding">
+<section class=" section-padding">
   <div class="container">
     <div class="row align-items-center">
 

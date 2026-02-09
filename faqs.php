@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<title>FAQs - Mobile Selling</title>
+<title>FAQs – Sell Old Phone in Delhi & Gurgaon | YourMobileBuyer</title>
+<meta name="description" content="Frequently asked questions about selling old, used or broken phones in Delhi & Gurgaon. Get instant price, free pickup and same day payment with YourMobileBuyer.">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
  <link rel="stylesheet" href="css/style.css">
+ <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <style>
 .faq-icon::before{
   content:"+";
@@ -29,7 +32,7 @@
 
 <body>
 <?php include 'includes/header.php'; ?>
-<section class="py-5 bg-light">
+<section class="py-5 ">
 <div class="container">
 
 <div class="text-center mb-5">
